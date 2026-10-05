@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CartPage from '../components/CartPage';
+import Faq from '../components/Faq.astro';
+---
+
+<Layout
+  title="Your bag — Noor Chair Delhi"
+  description="Review your Noor Chair picks and send a WhatsApp enquiry with delivery details. No payment taken on this demo site."
+>
+  <div class="mx-auto max-w-[1440px] px-5 md:px-10 pt-28 md:pt-36 pb-20">
+    <CartPage client:load />
+    <div class="mx-auto mt-16 max-w-3xl md:mt-24">
+      <h2 class="text-center font-display text-3xl md:text-4xl font-light">Before you ask.</h2>
+      <div class="mt-6">
+        <Faq items={[
+          { q: 'How do I pay?', a: 'There is no online payment on this demo site. After you send your WhatsApp enquiry, stock and delivery are confirmed in chat — you pay only once everything is agreed.' },
+          { q: 'What about delivery charges?', a: 'Delivery depends on your address and order size, so it is quoted personally on WhatsApp and added only with your approval. The total you see here covers the chairs themselves.' },
+          { q: 'Is the stock shown live?', a: 'Availability labels are indicative. Every enquiry gets a live stock confirmation on WhatsApp before anything moves forward.' },
+          { q: 'Do you handle offices and schools?', a: 'Yes — build a shortlist in your bag, mention quantities and the room type in the notes, and we will suggest suitable concepts from the catalogue.' },
+        ]} />
+      </div>
+    </div>
+  </div>
+</Layout>

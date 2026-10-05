@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ShopExplorer from '../components/ShopExplorer';
+import RecentlyViewed from '../components/RecentlyViewed';
+
+const q = Astro.url.searchParams.get('q') ?? '';
+---
+
+<Layout
+  title="Shop all chairs — Noor Chair Delhi"
+  description="Browse the full Noor Chair catalogue: office, visitor, gaming, school, plastic and lounge seating with fixed INR prices. Search, filter and sort 100+ concepts."
+>
+  <div class="mx-auto max-w-[1440px] px-5 md:px-10 pt-28 md:pt-36 pb-20">
+    <p class="text-[11px] font-semibold uppercase tracking-mega text-oxblood">The catalogue</p>
+    <h1 class="mt-3 font-display text-5xl md:text-7xl font-light leading-[0.98]">
+      Shop every seat.
+    </h1>
+    <p class="mt-4 max-w-xl text-[15px] md:text-base leading-relaxed text-smoke">
+      100 seating concepts across six collections. Prices are fixed in INR; stock and delivery
+      are confirmed personally on WhatsApp before you pay anything.
+    </p>
+    <div class="mt-8">
+      <ShopExplorer client:load initialQuery={q} />
+    </div>
+    <RecentlyViewed client:load />
+  </div>
+</Layout>

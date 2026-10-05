@@ -1,0 +1,72 @@
+---
+import { CATEGORIES } from '../data/products';
+import { getProductsByCategory } from '../lib/repository';
+
+const withCounts = CATEGORIES.map((c, i) => ({
+  ...c,
+  count: getProductsByCategory(c.slug).length,
+  n: String(i + 1).padStart(2, '0'),
+}));
+
+// Editorial rhythm: varied spans rather than six identical cards.
+const layout = [
+  'md:col-span-7 md:row-span-2 md:min-h-[560px] min-h-[380px]',
+  'md:col-span-5 md:min-h-[320px] min-h-[260px]',
+  'md:col-span-5 md:min-h-[320px] min-h-[260px]',
+  'md:col-span-4 md:min-h-[300px] min-h-[240px]',
+  'md:col-span-4 md:min-h-[300px] min-h-[240px]',
+  'md:col-span-4 md:min-h-[300px] min-h-[240px]',
+];
+---
+
+<section id="collections" class="scroll-mt-16 mx-auto max-w-[1440px] px-5 md:px-10 py-16 md:py-32" aria-label="Collections">
+  <div class="flex flex-wrap items-end justify-between gap-6">
+    <div>
+      <p class="text-[11px] font-semibold uppercase tracking-mega text-oxblood">02 — Collections</p>
+      <h2 class="mt-4 max-w-xl font-display text-4xl md:text-6xl font-light leading-[1.0] text-balance">
+        Six ways<br />to sit well.
+      </h2>
+    </div>
+    <div class="max-w-xs">
+      <p class="text-[15px] leading-relaxed text-smoke">
+        Not six identical boxes — six different postures for work, play, study and rest.
+      </p>
+      <a
+        href="/shop"
+        class="mt-4 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-ivory transition hover:bg-oxblood"
+      >
+        Shop all chairs →
+      </a>
+    </div>
+  </div>
+
+  <div class="mt-10 grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-5">
+    {withCounts.map((c, i) => (
+      <a
+        href={`/category/${c.slug}`}
+        class={`group relative overflow-hidden rounded-2xl bg-parchment ${layout[i % layout.length]}`}
+      >
+        <img
+          src={c.image}
+          alt={`${c.name} — illustrative concept`}
+          loading="lazy"
+          class="img-warm absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.07]"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/15 to-transparent transition-opacity duration-500 group-hover:from-ink/90" />
+        <span class="absolute left-5 top-4 md:left-7 md:top-6 font-display text-lg italic text-ivory/70">{c.n}</span>
+        <span class="absolute right-5 top-4 md:right-7 md:top-6 rounded-full bg-ivory/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-ivory backdrop-blur">
+          {c.count} chairs
+        </span>
+        <div class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 md:p-7">
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-mega text-ivory/70">{c.tagline}</p>
+            <h3 class="mt-1 font-display text-2xl md:text-[2rem] font-light leading-none text-ivory">{c.name}</h3>
+          </div>
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ivory/15 text-ivory backdrop-blur transition-all duration-300 group-hover:bg-oxblood group-hover:rotate-45" aria-hidden="true">
+            →
+          </span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>

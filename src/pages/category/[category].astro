@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ShopExplorer from '../../components/ShopExplorer';
+import { CATEGORIES } from '../../data/products';
+import type { CategorySlug } from '../../data/products';
+
+export function getStaticPaths() {
+  return CATEGORIES.map((c) => ({ params: { category: c.slug }, props: { category: c } }));
+}
+
+const { category } = Astro.props;
+const count = (await import('../../lib/repository')).getProductsByCategory(category.slug as CategorySlug).length;
+---
+
+<Layout
+  title={`${category.name} — Noor Chair Delhi`}
+  description={`${category.description} Browse ${count} ${category.name.toLowerCase()} concepts with fixed INR prices.`}
+  image={category.image}
+>
+  <div class="relative overflow-hidden pt-16 md:pt-[72px]">
+    <div class="relative h-[46svh] md:h-[58vh] min-h-[340px]">
+      <img src={category.image} alt={`${category.name} — illustrative campaign image`} class="img-warm absolute inset-0 h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/25 to-ink/20" />
+      <div class="absolute inset-x-0 bottom-0 mx-auto max-w-[1440px] px-5 md:px-10 pb-8 text-ivory">
+        <nav class="text-[12px] uppercase tracking-[0.16em] text-ivory/70" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-ivory">Home</a> / <a href="/shop" class="hover:text-ivory">Shop</a> / {category.name}
+        </nav>
+        <p class="mt-3 text-[11px] font-semibold uppercase tracking-mega text-ivory/70">{category.tagline}</p>
+        <h1 class="mt-2 font-display text-5xl md:text-7xl font-light">{category.name}</h1>
+        <p class="mt-3 max-w-xl text-[15px] text-ivory/75">{category.description}</p>
+      </div>
+    </div>
+  </div>
+  <div class="mx-auto max-w-[1440px] px-5 md:px-10 py-12 md:py-16">
+    <ShopExplorer client:load initialCategory={category.slug} />
+    <div class="mt-14 flex flex-wrap gap-2 border-t border-line pt-8">
+      <span class="w-full text-[11px] font-semibold uppercase tracking-mega text-smoke">Other collections</span>
+      {CATEGORIES.filter((c) => c.slug !== category.slug).map((c) => (
+        <a href={`/category/${c.slug}`} class="rounded-full border border-line px-4 py-2 text-[13px] font-medium hover:border-ink">{c.name}</a>
+      ))}
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,86 @@
+---
+import { CATEGORY_NAV, BRAND } from '../config/brand';
+import { LogoLockup } from './Logo';
+---
+
+<footer class="relative overflow-hidden bg-ink text-ivory">
+  <div class="mx-auto max-w-[1440px] px-5 md:px-10 pt-16 md:pt-24">
+    <div class="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div>
+        <a href="/" aria-label="Noor Chair — home" class="inline-block">
+          <LogoLockup tone="light" />
+        </a>
+        <p class="mt-6 max-w-xs text-[15px] leading-relaxed text-ivory/70">
+          Thoughtful seating for the spaces where life and work happen. An illustrative demo
+          catalogue — every chair invites you to sit differently.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a
+            href="/shop"
+            class="inline-flex items-center gap-2 rounded-full bg-ivory px-6 py-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-ink transition hover:bg-oxblood hover:text-white"
+          >
+            Shop all chairs
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center gap-2 rounded-full border border-ivory/30 px-6 py-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-ivory transition hover:border-ivory hover:bg-ivory/10"
+          >
+            WhatsApp enquiry
+          </a>
+        </div>
+      </div>
+      <nav aria-label="Shop">
+        <p class="text-[11px] font-semibold uppercase tracking-mega text-ivory/40">Shop</p>
+        <ul class="mt-5 space-y-3 text-[15px]">
+          <li><a class="transition hover:text-oxblood" href="/shop">All chairs</a></li>
+          {CATEGORY_NAV.map((c) => (
+            <li><a class="transition hover:text-oxblood" href={c.href}>{c.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <p class="text-[11px] font-semibold uppercase tracking-mega text-ivory/40">Company</p>
+        <ul class="mt-5 space-y-3 text-[15px]">
+          <li><a class="transition hover:text-oxblood" href="/story">Our story</a></li>
+          <li><a class="transition hover:text-oxblood" href="/contact">Contact &amp; enquiries</a></li>
+          <li><a class="transition hover:text-oxblood" href="/cart">Your bag</a></li>
+          <li><a class="transition hover:text-oxblood" href="/#spaces">Chairs in spaces</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p class="text-[11px] font-semibold uppercase tracking-mega text-ivory/40">Visit / Talk</p>
+        <ul class="mt-5 space-y-3 text-[15px] text-ivory/80">
+          <li>Delhi, India</li>
+          <li>Business hours shared on enquiry</li>
+          <li>
+            <a class="underline decoration-oxblood decoration-2 underline-offset-4 transition hover:text-oxblood" href="/contact">
+              WhatsApp enquiry
+            </a>
+          </li>
+        </ul>
+        <p class="mt-6 text-[13px] leading-relaxed text-ivory/45">
+          Demo site — imagery is illustrative. No contact details beyond Delhi are listed until
+          the owner supplies them.
+        </p>
+        <a href="#main" class="mt-5 inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.16em] text-ivory/60 transition hover:text-ivory">
+          ↑ Back to top
+        </a>
+      </div>
+    </div>
+  </div>
+  {/* giant wordmark */}
+  <div class="pointer-events-none mt-10 select-none overflow-hidden" aria-hidden="true">
+    <p class="whitespace-nowrap text-center font-display text-[22vw] font-semibold leading-[0.8] tracking-[0.06em] text-ivory/[0.07]">
+      NOOR
+    </p>
+  </div>
+  <div class="border-t border-ivory/15">
+    <div class="mx-auto flex max-w-[1440px] flex-col gap-3 px-5 md:px-10 py-6 text-[13px] text-ivory/50 md:flex-row md:items-center md:justify-between">
+      <p>© {new Date().getFullYear()} Noor Chair, Delhi. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="/privacy" class="transition hover:text-ivory">Privacy (placeholder)</a>
+        <a href="/terms" class="transition hover:text-ivory">Terms (placeholder)</a>
+      </div>
+    </div>
+  </div>
+</footer>

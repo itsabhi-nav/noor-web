@@ -1,0 +1,43 @@
+---
+import { WHATSAPP_NUMBER } from '../config/brand';
+
+const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello Noor Chair, I need seating for my office / business (multiple chairs). Please share options and delivery details.')}`;
+---
+
+<section class="mx-auto max-w-[1440px] px-5 md:px-10 py-14 md:py-28" aria-label="Business enquiries">
+  <div class="relative overflow-hidden rounded-3xl bg-olive text-ivory">
+    <img
+      src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1800&auto=format&fit=crop"
+      alt="Architectural office interior with rows of workstations"
+      loading="lazy"
+      class="img-warm absolute inset-0 h-full w-full object-cover opacity-25"
+    />
+    <div class="relative grid gap-8 p-8 md:p-16 lg:grid-cols-2">
+      <div>
+        <p class="text-[11px] font-semibold uppercase tracking-mega text-ivory/60">06 — For business</p>
+        <h2 class="mt-4 font-display text-4xl md:text-[3.4rem] font-light leading-[1.02]">
+          Furnishing an office, school or studio?
+        </h2>
+        <p class="mt-5 max-w-md text-[15px] md:text-base leading-relaxed text-ivory/75">
+          Tell us how many seats you need and how the room works. We'll suggest suitable
+          concepts from the catalogue and confirm stock and delivery on WhatsApp — no bulk
+          promises we can't keep.
+        </p>
+      </div>
+      <div class="flex flex-col justify-center gap-4 lg:items-end">
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 rounded-full bg-ivory px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.16em] text-ink transition hover:bg-oxblood hover:text-white"
+        >
+          <span aria-hidden="true">◉</span> Enquire on WhatsApp
+        </a>
+        <a href="/contact" class="text-[13px] uppercase tracking-[0.16em] text-ivory/70 underline underline-offset-4 hover:text-ivory">
+          Or use the enquiry form →
+        </a>
+        <p class="text-[13px] text-ivory/55">Replies during business hours · Delhi</p>
+      </div>
+    </div>
+  </div>
+</section>

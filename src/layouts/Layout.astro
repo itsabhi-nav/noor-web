@@ -1,0 +1,59 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header';
+import SearchOverlay from '../components/SearchOverlay';
+import CartDrawer from '../components/CartDrawer';
+import Toasts from '../components/Toasts';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  productJsonLd?: Record<string, unknown>;
+}
+
+const { title, description, image, productJsonLd } = Astro.props;
+const canonical = Astro.url.href;
+const ogImage = image ?? '/images/hero.jpg';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="theme-color" content="#F7F3EC" />
+    {productJsonLd && <script type="application/ld+json" set:html={JSON.stringify(productJsonLd)} />}
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-ink focus:text-ivory focus:px-4 focus:py-2 focus:rounded"
+    >
+      Skip to content
+    </a>
+    <Header client:load />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    {/* cinematic film grain */}
+    <div class="bg-grain pointer-events-none fixed inset-0 z-[5] opacity-[0.05]" aria-hidden="true"></div>
+    <SearchOverlay client:load />
+    <CartDrawer client:load />
+    <Toasts client:load />
+  </body>
+</html>

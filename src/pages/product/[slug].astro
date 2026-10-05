@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductDetail from '../../components/ProductDetail';
+import { PRODUCTS, AVAILABILITY_LABEL } from '../../data/products';
+import { getProductBySlug, getRelatedProducts } from '../../lib/repository';
+
+export function getStaticPaths() {
+  return PRODUCTS.map((p) => ({ params: { slug: p.slug }, props: { slug: p.slug } }));
+}
+
+const { slug } = Astro.props;
+const product = getProductBySlug(slug)!;
+const related = getRelatedProducts(product, 4);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: product.name,
+  sku: product.sku,
+  category: product.category,
+  description: product.description,
+  image: product.images.map((i) => i.src),
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'INR',
+    price: product.price,
+    availability:
+      product.availability === 'out-of-stock' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+  },
+};
+---
+
+<Layout
+  title={`${product.name} (${product.sku}) — ${product.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 })} | Noor Chair`}
+  description={`${product.name}, model ${product.sku}. ${product.description} ${AVAILABILITY_LABEL[product.availability]}.`}
+  image={product.images[0]?.src}
+  productJsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-[1440px] px-5 md:px-10 pt-28 md:pt-32 pb-20">
+    <ProductDetail client:load product={product} related={related} />
+  </div>
+</Layout>

@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ivory: #f7f3ec;
+  --ink: #16130e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ivory text-ink font-sans antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.font-display {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+::selection {
+  background: #86281c;
+  color: #fff;
+}
+
+/* refined focus */
+:focus-visible {
+  outline: 2px solid #86281c;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* thin editorial scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #efe8db;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9bda6;
+  border-radius: 8px;
+}
+
+/* image treatment */
+.img-warm {
+  filter: saturate(0.92) contrast(1.02) brightness(0.99);
+}
+
+/* film grain — cinematic finish */
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* marquee */
+@keyframes noor-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: noor-marquee 36s linear infinite;
+}
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+/* slow ken burns for ambient imagery */
+@keyframes noor-drift {
+  0%,
+  100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.06) translateY(-1.5%);
+  }
+}
+.animate-drift {
+  animation: noor-drift 18s ease-in-out infinite;
+}
+/* hide horizontal overflow globally */
+html,
+body {
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

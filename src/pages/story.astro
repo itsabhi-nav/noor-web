@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { WHATSAPP_NUMBER } from '../config/brand';
+
+const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello Noor Chair, I have a question about your chairs.')}`;
+---
+
+<Layout
+  title="Our story — Noor Chair Delhi"
+  description="Noor Chair is a Delhi seating studio curating ergonomic office chairs, visitor seating, gaming chairs, school and plastic chairs. Comfort as architecture you feel."
+  image="/images/story.jpg"
+>
+  <div class="mx-auto max-w-[1440px] px-5 md:px-10 pt-28 md:pt-40 pb-20">
+    <p class="text-[11px] font-semibold uppercase tracking-mega text-oxblood">Our story</p>
+    <h1 class="mt-4 max-w-4xl font-display text-5xl md:text-8xl font-light leading-[0.95]">
+      A Delhi studio obsessed with sitting well.
+    </h1>
+    <div class="mt-10 grid gap-10 lg:grid-cols-2">
+      <img src="/images/story.jpg" alt="Warm minimal interior with designer chair" class="img-warm h-[320px] md:h-[480px] w-full rounded-2xl object-cover" />
+      <div class="flex flex-col justify-center">
+        <p class="text-[16px] md:text-lg leading-relaxed text-smoke">
+          Noor Chair began with a simple observation: in every office, classroom and home across
+          Delhi, the chair is the hardest-working object in the room — and usually the least
+          considered. We set out to change that, one seat at a time.
+        </p>
+        <p class="mt-5 text-[16px] md:text-lg leading-relaxed text-smoke">
+          Our approach is editorial, not transactional. We curate seating concepts around posture,
+          daylight, summer heat and the way Indian rooms actually work — then present each chair
+          the way a design brand would: honestly, beautifully, and with fixed prices.
+        </p>
+        <div class="mt-8 rounded-2xl border border-line bg-parchment/60 p-6">
+          <h2 class="font-display text-2xl font-light">What we promise — and what we don't</h2>
+          <ul class="mt-4 space-y-2.5 text-[15px] leading-relaxed text-smoke">
+            <li><strong class="text-ink">We do</strong> help you compare concepts, confirm stock honestly, and arrange delivery transparently over WhatsApp.</li>
+            <li><strong class="text-ink">We don't</strong> claim factory ownership, certifications, awards or customer counts we cannot verify.</li>
+            <li><strong class="text-ink">Imagery note:</strong> catalogue photography on this demo site is illustrative — it represents seating concepts, not verified photos of physical stock.</li>
+          </ul>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/shop" class="rounded-full bg-ink px-7 py-3.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-ivory hover:bg-oxblood transition">Browse the catalogue</a>
+          <a href={wa} target="_blank" rel="noopener" class="rounded-full border border-ink px-7 py-3.5 text-[12px] font-semibold uppercase tracking-[0.16em] hover:bg-ink hover:text-ivory transition">WhatsApp us</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 grid gap-4 md:grid-cols-3">
+      {[
+        { t: 'Posture first', d: 'Lumbar curves, tilt geometry and seat depth chosen for long Indian workdays.' },
+        { t: 'Climate aware', d: 'Breathable meshes, wipe-clean surfaces and finishes that survive dust and heat.' },
+        { t: 'Honest commerce', d: 'Fixed INR prices, no fake discounts, stock confirmed before you pay anything.' },
+      ].map((c) => (
+        <div class="rounded-2xl border border-line p-7">
+          <h2 class="font-display text-2xl font-light">{c.t}</h2>
+          <p class="mt-2 text-[15px] leading-relaxed text-smoke">{c.d}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

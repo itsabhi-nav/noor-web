@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero';
+import Marquee from '../components/Marquee.astro';
+import ScrollReveal from '../components/ScrollReveal';
+import Collections from '../components/Collections.astro';
+import FeaturedProducts from '../components/FeaturedProducts';
+import Spotlight from '../components/Spotlight';
+import MaterialStory from '../components/MaterialStory';
+import StorySection from '../components/StorySection.astro';
+import Spaces from '../components/Spaces';
+import BusinessEnquiry from '../components/BusinessEnquiry.astro';
+import Closing from '../components/Closing.astro';
+---
+
+<Layout
+  title="Noor Chair Delhi — Sit differently | Office, Gaming, School & Visitor Chairs"
+  description="Noor Chair, Delhi — thoughtful seating for offices, homes, classrooms and studios. Explore 100+ chair concepts across office, visitor, gaming, school and plastic collections."
+  image="/images/hero.jpg"
+>
+  <Hero client:load />
+  <Marquee />
+  <ScrollReveal client:load />
+  <Collections />
+  <FeaturedProducts client:visible />
+  <Spotlight client:visible />
+  <MaterialStory client:visible />
+  <StorySection />
+  <Spaces client:visible />
+  <BusinessEnquiry />
+  <Closing />
+</Layout>
