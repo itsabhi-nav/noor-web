@@ -86,7 +86,8 @@ export default function Spotlight() {
           <div className="mt-7 flex flex-wrap gap-3">
             <button
               onClick={() => {
-                if (addToCartWithToast(product.slug, 1, color)) openCart();
+                // drawer opens directly here, so no 'View bag' toast action needed
+                if (addToCartWithToast(product.slug, 1, color, false)) openCart();
               }}
               className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-ivory transition hover:bg-oxblood"
             >

@@ -65,7 +65,8 @@ export default function ProductDetail({ product, related }: { product: Product; 
   };
 
   const add = () => {
-    if (addToCartWithToast(product.slug, qty, color)) openCartDrawer();
+    // drawer opens directly here, so no 'View bag' toast action needed
+    if (addToCartWithToast(product.slug, qty, color, false)) openCartDrawer();
   };
 
   return (

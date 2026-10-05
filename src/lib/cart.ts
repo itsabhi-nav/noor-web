@@ -152,9 +152,16 @@ export function useCartCount(): number {
   );
 }
 
+export interface CartToastAction {
+  label: string;
+  /** CustomEvent name to dispatch on tap, e.g. 'noor:cart-open' */
+  event: string;
+}
+
 export interface CartToast {
   id: number;
   message: string;
+  action?: CartToastAction;
 }
 
 let toastListeners: Array<(t: CartToast) => void> = [];
@@ -164,12 +171,12 @@ export function onCartToast(fn: (t: CartToast) => void): () => void {
     toastListeners = toastListeners.filter((f) => f !== fn);
   };
 }
-export function emitCartToast(message: string): void {
-  const t = { id: Date.now() + Math.random(), message };
+export function emitCartToast(message: string, action?: CartToastAction): void {
+  const t = { id: Date.now() + Math.random(), message, action };
   toastListeners.forEach((f) => f(t));
 }
 
-export function addToCartWithToast(slug: string, qty = 1, color?: string): boolean {
+export function addToCartWithToast(slug: string, qty = 1, color?: string, viewBagAction = true): boolean {
   const p = getProductBySlug(slug);
   if (!p) return false;
   if (p.availability === 'out-of-stock') {
@@ -177,7 +184,10 @@ export function addToCartWithToast(slug: string, qty = 1, color?: string): boole
     return false;
   }
   addToCart(slug, qty, color);
-  emitCartToast(`Added — ${p.name}`);
+  emitCartToast(
+    `Added — ${p.name}`,
+    viewBagAction ? { label: 'View bag', event: 'noor:cart-open' } : undefined,
+  );
   return true;
 }
 
@@ -195,7 +205,7 @@ export function useCartToastHost() {
     () =>
       onCartToast((t) => {
         setToasts((prev) => [...prev.slice(-2), t]);
-        setTimeout(() => setToasts((prev) => prev.filter((x) => x.id !== t.id)), 2600);
+        setTimeout(() => setToasts((prev) => prev.filter((x) => x.id !== t.id)), 4200);
       }),
     [],
   );

@@ -1,5 +1,5 @@
 ---
-import { CATEGORY_NAV, BRAND } from '../config/brand';
+import { CATEGORY_NAV, BRAND, WHATSAPP_NUMBER } from '../config/brand';
 import { LogoLockup } from './Logo';
 ---
 
@@ -77,6 +77,17 @@ import { LogoLockup } from './Logo';
   <div class="border-t border-ivory/15">
     <div class="mx-auto flex max-w-[1440px] flex-col gap-3 px-5 md:px-10 py-6 text-[13px] text-ivory/50 md:flex-row md:items-center md:justify-between">
       <p>© {new Date().getFullYear()} Noor Chair, Delhi. All rights reserved.</p>
+      <p>
+        Designed &amp; developed by{' '}
+        <a
+          href={`https://wa.me/${WHATSAPP_NUMBER}`}
+          target="_blank"
+          rel="noopener"
+          class="font-semibold text-ivory underline decoration-oxblood decoration-2 underline-offset-4 transition hover:decoration-ivory"
+        >
+          Abhinav Dubey
+        </a>
+      </p>
       <div class="flex gap-6">
         <a href="/privacy" class="transition hover:text-ivory">Privacy (placeholder)</a>
         <a href="/terms" class="transition hover:text-ivory">Terms (placeholder)</a>
