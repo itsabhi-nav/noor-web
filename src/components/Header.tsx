@@ -85,7 +85,7 @@ export default function Header() {
         >
           <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 md:h-[72px] md:px-10">
             <a href="/" className="group flex shrink-0 items-center" aria-label="Noor Chair — home">
-              <LogoLockup />
+              <LogoLockup className="origin-left scale-[0.88] min-[400px]:scale-100" />
             </a>
 
             <nav className="hidden items-center gap-7 lg:flex xl:gap-8" aria-label="Primary">
@@ -179,7 +179,7 @@ export default function Header() {
             <div className="flex items-center gap-1 md:gap-1.5">
               <a
                 href="/shop"
-                className="mr-0.5 rounded-full bg-ink px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ivory transition hover:bg-oxblood md:hidden"
+                className="mr-0.5 hidden rounded-full bg-ink px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ivory transition hover:bg-oxblood min-[360px]:inline-flex md:hidden"
               >
                 Shop
               </a>

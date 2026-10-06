@@ -364,7 +364,7 @@ export default function ShopExplorer({
                   touch();
                 }}
                 placeholder="Search name or model — e.g. Meridian, NC-OF-101…"
-                className="w-full bg-transparent text-[15px] outline-none placeholder:text-smoke/70"
+                className="w-full bg-transparent text-base outline-none placeholder:text-smoke/70"
                 aria-label="Search products"
               />
               {query && (
@@ -412,7 +412,7 @@ export default function ShopExplorer({
                 <button
                   key={chip.key}
                   onClick={chip.clear}
-                  className="flex shrink-0 items-center gap-1.5 rounded-full bg-ink py-1.5 pl-3.5 pr-2.5 text-[12px] font-medium text-ivory transition hover:bg-oxblood"
+                  className="flex shrink-0 items-center gap-1.5 rounded-full bg-ink py-2 pl-3.5 pr-2.5 text-[12px] font-medium text-ivory transition hover:bg-oxblood"
                   aria-label={`Remove filter ${chip.label}`}
                 >
                   {chip.label} <X size={13} />
@@ -424,22 +424,42 @@ export default function ShopExplorer({
             </div>
           )}
 
-          <div className="flex items-center justify-between pt-1.5 text-[13px] text-smoke md:hidden" role="status">
-            <span>
+          <div className="flex items-center justify-between gap-2 pt-2 text-[13px] text-smoke md:hidden" role="status">
+            <span className="truncate">
               <strong className="text-ink">{results.length}</strong> {results.length === 1 ? 'chair' : 'chairs'}
             </span>
-            <select
-              value={sort}
-              onChange={(e) => setSort(e.target.value as Sort)}
-              className="rounded-full border border-line bg-white/85 px-3 py-1.5 text-[12px] font-medium outline-none"
-              aria-label="Sort products"
-            >
-              {SORTS.map((s) => (
-                <option key={s.id} value={s.id}>
-                  {s.label}
-                </option>
-              ))}
-            </select>
+            <span className="flex shrink-0 items-center gap-1.5">
+              <select
+                value={sort}
+                onChange={(e) => setSort(e.target.value as Sort)}
+                className="max-w-[128px] truncate rounded-full border border-line bg-white/85 px-3 py-2 text-[12px] font-medium outline-none"
+                aria-label="Sort products"
+              >
+                {SORTS.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.label}
+                  </option>
+                ))}
+              </select>
+              <span className="flex rounded-full border border-line bg-white/85 p-0.5" role="group" aria-label="Change layout">
+                <button
+                  onClick={() => setView('grid')}
+                  aria-pressed={view === 'grid'}
+                  aria-label="Grid view"
+                  className={`flex h-8 w-8 items-center justify-center rounded-full transition ${view === 'grid' ? 'bg-ink text-ivory' : 'text-smoke'}`}
+                >
+                  <LayoutGrid size={14} />
+                </button>
+                <button
+                  onClick={() => setView('list')}
+                  aria-pressed={view === 'list'}
+                  aria-label="List view"
+                  className={`flex h-8 w-8 items-center justify-center rounded-full transition ${view === 'list' ? 'bg-ink text-ivory' : 'text-smoke'}`}
+                >
+                  <List size={14} />
+                </button>
+              </span>
+            </span>
           </div>
           <p className="hidden pt-1.5 text-[13px] text-smoke md:block" role="status">
             <strong className="text-ink">{results.length}</strong> of {totalCount} chairs
@@ -474,7 +494,7 @@ export default function ShopExplorer({
           </div>
         ) : view === 'grid' ? (
           <>
-            <motion.div layout className="mt-6 grid grid-cols-1 gap-x-5 gap-y-10 min-[480px]:grid-cols-2 xl:grid-cols-3">
+            <motion.div layout className="mt-6 grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-5 sm:gap-y-10 xl:grid-cols-3">
               <AnimatePresence mode="popLayout">
                 {shown.map((p) => (
                   <motion.div
@@ -583,7 +603,7 @@ export default function ShopExplorer({
                   <img key={p.slug} src={p.images[0]?.src} alt="" className="h-10 w-10 rounded-full border-2 border-ink object-cover" />
                 ))}
               </div>
-              <span className="text-[13px] text-ivory/80">
+              <span className="hidden text-[13px] text-ivory/80 min-[420px]:inline">
                 {compare.length} of 3 selected
               </span>
               <button
@@ -694,7 +714,7 @@ function ListRow({ product: p, comparing, onCompare }: { product: Product; compa
             <button
               onClick={onCompare}
               aria-pressed={comparing}
-              className={`rounded-full border px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.1em] transition active:scale-95 ${
+              className={`rounded-full border px-3.5 py-2.5 text-[11px] font-bold uppercase tracking-[0.1em] transition active:scale-95 ${
                 comparing ? 'border-oxblood bg-oxblood text-white' : 'border-line hover:border-ink'
               }`}
             >
@@ -702,7 +722,7 @@ function ListRow({ product: p, comparing, onCompare }: { product: Product; compa
             </button>
             <a
               href={`/product/${p.slug}`}
-              className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-[11px] font-bold uppercase tracking-[0.1em] text-ivory transition hover:bg-oxblood active:scale-95"
+              className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.1em] text-ivory transition hover:bg-oxblood active:scale-95"
               aria-label={`View ${p.name} — photos, price and details`}
             >
               <span className="hidden sm:inline">View chair</span>

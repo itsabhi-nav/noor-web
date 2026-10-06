@@ -87,26 +87,46 @@ export default function ProductCard({
             </button>
           </div>
         )}
+        {/* touch-friendly action pinned to the photo — no precision needed */}
+        {quickAdd ? (
+          !out && (
+            <button
+              onClick={doQuickAdd}
+              className="absolute bottom-2.5 right-2.5 flex h-10 w-10 items-center justify-center rounded-full bg-ivory/95 text-ink shadow-lg backdrop-blur transition hover:bg-oxblood hover:text-white active:scale-90 md:hidden"
+              aria-label={`Quick add ${product.name} to bag`}
+            >
+              <Plus size={18} />
+            </button>
+          )
+        ) : (
+          <a
+            href={`/product/${product.slug}`}
+            className="absolute bottom-2.5 right-2.5 flex h-10 w-10 items-center justify-center rounded-full bg-ink/85 text-ivory shadow-lg backdrop-blur transition hover:bg-oxblood active:scale-90"
+            aria-label={`View ${product.name} — photos, price and details`}
+          >
+            <ArrowRight size={17} />
+          </a>
+        )}
       </div>
 
-      <div className="mt-4 flex items-start justify-between gap-3 px-1">
+      <div className="mt-3 px-0.5 sm:mt-4 sm:px-1">
         <div className="min-w-0">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-smoke">
+          <p className="truncate text-[10px] font-semibold uppercase tracking-[0.14em] text-smoke sm:text-[11px] sm:tracking-[0.18em]">
             {product.category} · {product.sku}
           </p>
-          <a href={`/product/${product.slug}`} className="mt-1 block">
-            <h3 className="font-display text-[19px] font-medium leading-snug transition-colors hover:text-oxblood">
+          <a href={`/product/${product.slug}`} className="mt-0.5 block sm:mt-1">
+            <h3 className="font-display text-[15px] font-medium leading-snug transition-colors hover:text-oxblood sm:text-[19px]">
               <span className="line-clamp-1">{product.name}</span>
             </h3>
           </a>
-          <div className="mt-1 flex items-baseline gap-2">
-            <span className="text-[16px] font-semibold">{inr(product.price)}</span>
+          <div className="mt-0.5 flex items-baseline gap-1.5 sm:mt-1 sm:gap-2">
+            <span className="text-[15px] font-bold sm:text-[16px] sm:font-semibold">{inr(product.price)}</span>
             {product.mrp && product.mrp > product.price && (
-              <span className="text-[13px] text-smoke line-through">{inr(product.mrp)}</span>
+              <span className="hidden text-[13px] text-smoke line-through min-[400px]:inline">{inr(product.mrp)}</span>
             )}
           </div>
           {product.colors && (
-            <div className="mt-2 flex items-center gap-1.5" aria-label="Available colours">
+            <div className="mt-1.5 flex items-center gap-1.5 sm:mt-2" aria-label="Available colours">
               {product.colors.slice(0, 5).map((c) => (
                 <span
                   key={c.name}
@@ -117,31 +137,13 @@ export default function ProductCard({
               ))}
               <a
                 href={`/product/${product.slug}`}
-                className="ml-1 flex items-center gap-0.5 text-[12px] font-medium text-smoke hover:text-oxblood"
+                className="ml-1 hidden items-center gap-0.5 text-[12px] font-medium text-smoke hover:text-oxblood sm:flex"
               >
                 Details <ArrowUpRight size={12} />
               </a>
             </div>
           )}
         </div>
-        {quickAdd ? (
-          <button
-            onClick={doQuickAdd}
-            disabled={out}
-            className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ink text-ivory transition hover:bg-oxblood hover:text-white active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 md:hidden"
-            aria-label={out ? `${product.name} out of stock` : `Quick add ${product.name} to bag`}
-          >
-            <Plus size={18} />
-          </button>
-        ) : (
-          <a
-            href={`/product/${product.slug}`}
-            className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ink text-ivory transition hover:bg-oxblood hover:text-white active:scale-90"
-            aria-label={`View ${product.name} — photos, price and details`}
-          >
-            <ArrowRight size={18} />
-          </a>
-        )}
       </div>
     </motion.article>
   );

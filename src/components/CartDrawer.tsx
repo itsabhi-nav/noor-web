@@ -98,18 +98,18 @@ export default function CartDrawer() {
                           <div className="flex items-center rounded-full border border-line">
                             <button
                               onClick={() => setQty(l.slug, l.qty - 1, l.color)}
-                              className="flex h-8 w-8 items-center justify-center hover:text-oxblood"
+                              className="flex h-9 w-9 items-center justify-center hover:text-oxblood"
                               aria-label="Decrease quantity"
                             >
-                              <Minus size={14} />
+                              <Minus size={15} />
                             </button>
                             <span className="w-7 text-center text-sm font-semibold">{l.qty}</span>
                             <button
                               onClick={() => setQty(l.slug, Math.min(99, l.qty + 1), l.color)}
-                              className="flex h-8 w-8 items-center justify-center hover:text-oxblood"
+                              className="flex h-9 w-9 items-center justify-center hover:text-oxblood"
                               aria-label="Increase quantity"
                             >
-                              <Plus size={14} />
+                              <Plus size={15} />
                             </button>
                           </div>
                           <span className="text-[15px] font-semibold">{inr(l.lineTotal)}</span>

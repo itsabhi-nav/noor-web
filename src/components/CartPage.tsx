@@ -24,7 +24,7 @@ function validate(c: EnquiryCustomer): Errors {
 }
 
 const inputCls = (bad?: string) =>
-  `w-full rounded-xl border bg-white/70 px-4 py-3 text-[15px] outline-none transition placeholder:text-smoke/60 ${
+  `w-full rounded-xl border bg-white/70 px-4 py-3.5 text-base outline-none transition placeholder:text-smoke/60 ${
     bad ? 'border-oxblood' : 'border-line focus:border-ink'
   }`;
 

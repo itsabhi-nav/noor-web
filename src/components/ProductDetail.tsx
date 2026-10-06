@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import {
   Check, ChevronLeft, ChevronRight, Expand, Link2, Minus, Plus,
@@ -25,6 +25,24 @@ export default function ProductDetail({ product, related }: { product: Product; 
   const out = product.availability === 'out-of-stock';
   const wa = productWhatsAppUrl(WHATSAPP_NUMBER, product.name, product.sku, product.price);
   const n = product.images.length;
+  const touchX = useRef<number | null>(null);
+  const swipedAt = useRef(0);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchX.current;
+    touchX.current = null;
+    if (Math.abs(dx) < 40) return;
+    swipedAt.current = Date.now();
+    setImgIdx((i) => (i + (dx < 0 ? 1 : n - 1)) % n);
+  };
+  const onGalleryClick = () => {
+    if (Date.now() - swipedAt.current < 350) return; // was a swipe, not a tap
+    setLightbox(true);
+  };
 
   useEffect(() => {
     recordView(product.slug);
@@ -75,8 +93,10 @@ export default function ProductDetail({ product, related }: { product: Product; 
         {/* gallery */}
         <div className="lg:sticky lg:top-28 lg:self-start">
           <div
-            className="group relative cursor-zoom-in overflow-hidden rounded-2xl bg-parchment aspect-[4/5] md:aspect-square"
-            onClick={() => setLightbox(true)}
+            className="group relative cursor-zoom-in touch-pan-y overflow-hidden rounded-2xl bg-parchment aspect-[4/5] md:aspect-square"
+            onClick={onGalleryClick}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
           >
             <AnimatePresence mode="wait">
               <motion.img
@@ -306,7 +326,7 @@ export default function ProductDetail({ product, related }: { product: Product; 
             More {product.category} →
           </a>
         </div>
-        <div className="mt-8 grid grid-cols-1 gap-x-5 gap-y-10 min-[480px]:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-5 sm:gap-y-10 lg:grid-cols-4">
           {related.map((p, i) => (
             <ProductCard key={p.slug} product={p} index={i} />
           ))}
