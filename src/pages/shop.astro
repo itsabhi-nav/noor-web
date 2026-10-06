@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ShopExplorer from '../components/ShopExplorer';
 import RecentlyViewed from '../components/RecentlyViewed';
+import HowToBuy from '../components/HowToBuy.astro';
 
 const q = Astro.url.searchParams.get('q') ?? '';
 ---
@@ -19,6 +20,7 @@ const q = Astro.url.searchParams.get('q') ?? '';
       100 seating concepts across six collections. Prices are fixed in INR; stock and delivery
       are confirmed personally on WhatsApp before you pay anything.
     </p>
+    <HowToBuy />
     <div class="mt-8">
       <ShopExplorer client:load initialQuery={q} />
     </div>

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowUpRight, Plus } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Plus } from 'lucide-react';
 import type { Product } from '../lib/repository';
 import { inr } from '../lib/format';
 import { AVAILABILITY_LABEL } from '../data/products';
@@ -12,9 +12,22 @@ const DOT: Record<Product['availability'], string> = {
   'out-of-stock': 'bg-ivory/60',
 };
 
-export default function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
+export default function ProductCard({
+  product,
+  index = 0,
+  quickAdd = true,
+}: {
+  product: Product;
+  index?: number;
+  /**
+   * When false (e.g. catalogue grids), no buy button is shown — the card
+   * routes to the product detail page instead, where photos, price and
+   * add-to-bag live together.
+   */
+  quickAdd?: boolean;
+}) {
   const out = product.availability === 'out-of-stock';
-  const quickAdd = () => addToCartWithToast(product.slug);
+  const doQuickAdd = () => addToCartWithToast(product.slug);
 
   return (
     <motion.article
@@ -62,11 +75,11 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
           <span className={`h-1.5 w-1.5 rounded-full ${DOT[product.availability]}`} aria-hidden="true" />
           {AVAILABILITY_LABEL[product.availability]}
         </span>
-        {/* desktop hover quick-add */}
-        {!out && (
+        {/* desktop hover quick-add (only where quickAdd is enabled) */}
+        {!out && quickAdd && (
           <div className="absolute inset-x-3 bottom-3 hidden translate-y-[130%] transition-transform duration-300 ease-out group-hover:translate-y-0 group-focus-within:translate-y-0 md:block">
             <button
-              onClick={quickAdd}
+              onClick={doQuickAdd}
               className="flex w-full items-center justify-center gap-2 rounded-full bg-ivory/95 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-ink opacity-0 backdrop-blur transition-opacity duration-300 hover:bg-oxblood hover:text-white group-hover:opacity-100 group-focus-within:opacity-100"
               aria-label={`Quick add ${product.name} to bag`}
             >
@@ -111,14 +124,24 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
             </div>
           )}
         </div>
-        <button
-          onClick={quickAdd}
-          disabled={out}
-          className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ink text-ivory transition hover:bg-oxblood hover:text-white active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 md:hidden"
-          aria-label={out ? `${product.name} out of stock` : `Quick add ${product.name} to bag`}
-        >
-          <Plus size={18} />
-        </button>
+        {quickAdd ? (
+          <button
+            onClick={doQuickAdd}
+            disabled={out}
+            className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ink text-ivory transition hover:bg-oxblood hover:text-white active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 md:hidden"
+            aria-label={out ? `${product.name} out of stock` : `Quick add ${product.name} to bag`}
+          >
+            <Plus size={18} />
+          </button>
+        ) : (
+          <a
+            href={`/product/${product.slug}`}
+            className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ink text-ivory transition hover:bg-oxblood hover:text-white active:scale-90"
+            aria-label={`View ${product.name} — photos, price and details`}
+          >
+            <ArrowRight size={18} />
+          </a>
+        )}
       </div>
     </motion.article>
   );

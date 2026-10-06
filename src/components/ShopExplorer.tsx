@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import {
-  ArrowLeftRight, BadgePercent, Check, ChevronDown, LayoutGrid, List, SearchX, ShoppingBag, X,
+  ArrowLeftRight, ArrowRight, BadgePercent, Check, ChevronDown, LayoutGrid, List, SearchX, X,
 } from 'lucide-react';
 import ProductCard from './ProductCard';
 import {
@@ -11,7 +11,7 @@ import type { CategorySlug, Product } from '../lib/repository';
 import { AVAILABILITY_LABEL } from '../data/products';
 import type { Availability } from '../data/products';
 import { inr } from '../lib/format';
-import { addToCartWithToast, emitCartToast } from '../lib/cart';
+import { emitCartToast } from '../lib/cart';
 
 type Sort = 'featured' | 'price-asc' | 'price-desc' | 'name-asc' | 'name-desc' | 'discount-desc';
 type View = 'grid' | 'list';
@@ -247,6 +247,7 @@ export default function ShopExplorer({
               active={category === c.slug}
               label={c.name}
               count={catCounts.get(c.slug) ?? 0}
+              image={c.image}
               onClick={() => {
                 setCategory(c.slug);
                 touch();
@@ -311,6 +312,7 @@ export default function ShopExplorer({
                 >
                   {on && <Check size={13} />}
                 </span>
+                <span className={`h-2 w-2 shrink-0 rounded-full ${AVAIL_DOT[a]}`} aria-hidden="true" />
                 <span className={on ? 'font-medium' : 'text-smoke'}>{AVAILABILITY_LABEL[a]}</span>
               </button>
             );
@@ -484,7 +486,7 @@ export default function ShopExplorer({
                     transition={{ duration: 0.3 }}
                     className="group/cmp relative"
                   >
-                    <ProductCard product={p} />
+                    <ProductCard product={p} quickAdd={false} />
                     <CompareToggle slug={p.slug} active={compare.includes(p.slug)} onToggle={() => toggleCompare(p.slug)} />
                   </motion.div>
                 ))}
@@ -611,23 +613,34 @@ export default function ShopExplorer({
   );
 }
 
-function FilterRadio({ active, label, count, onClick }: { active: boolean; label: string; count: number; onClick: () => void }) {
+function FilterRadio({ active, label, count, onClick, image }: { active: boolean; label: string; count: number; onClick: () => void; image?: string }) {
   return (
     <button
       onClick={onClick}
       aria-pressed={active}
-      className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-[14px] transition active:scale-[0.98] ${
+      className={`flex w-full items-center gap-2.5 rounded-xl px-2.5 py-2 text-[14px] transition active:scale-[0.98] ${
         active ? 'bg-ink font-semibold text-ivory' : 'hover:bg-ink/[0.05]'
       }`}
     >
-      <span className={`flex h-4 w-4 items-center justify-center rounded-full border ${active ? 'border-ivory' : 'border-smoke/50'}`} aria-hidden="true">
-        {active && <span className="h-1.5 w-1.5 rounded-full bg-oxblood" />}
-      </span>
+      {image ? (
+        <img src={image} alt="" loading="lazy" className="h-10 w-10 shrink-0 rounded-lg object-cover" />
+      ) : (
+        <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${active ? 'border-ivory' : 'border-smoke/50'}`} aria-hidden="true">
+          {active && <span className="h-1.5 w-1.5 rounded-full bg-oxblood" />}
+        </span>
+      )}
       <span className="truncate">{label}</span>
-      <span className={`ml-auto text-[12px] ${active ? 'text-ivory/70' : 'text-smoke'}`}>{count}</span>
+      <span className={`ml-auto shrink-0 text-[12px] ${active ? 'text-ivory/70' : 'text-smoke'}`}>{count}</span>
     </button>
   );
 }
+
+const AVAIL_DOT: Record<Availability, string> = {
+  'in-stock': 'bg-emerald-500',
+  'low-stock': 'bg-amber-500',
+  'made-to-order': 'bg-sky-500',
+  'out-of-stock': 'bg-zinc-400',
+};
 
 function CompareToggle({ slug, active, onToggle }: { slug: string; active: boolean; onToggle: () => void }) {
   return (
@@ -647,7 +660,9 @@ function CompareToggle({ slug, active, onToggle }: { slug: string; active: boole
 function ListRow({ product: p, comparing, onCompare }: { product: Product; comparing: boolean; onCompare: () => void }) {
   const out = p.availability === 'out-of-stock';
   return (
-    <article className="flex gap-4 rounded-2xl border border-line bg-ivory p-3 transition hover:border-ink/40 hover:shadow-[0_10px_36px_rgba(22,19,14,0.08)] sm:gap-5 sm:p-4">
+    <article
+      className="flex gap-4 rounded-2xl border border-line bg-ivory p-3 transition hover:border-ink/40 hover:shadow-[0_10px_36px_rgba(22,19,14,0.08)] sm:gap-5 sm:p-4"
+    >
       <a href={`/product/${p.slug}`} className="relative block h-28 w-28 shrink-0 overflow-hidden rounded-xl bg-parchment sm:h-36 sm:w-36">
         <img
           src={p.images[0]?.src}
@@ -685,15 +700,15 @@ function ListRow({ product: p, comparing, onCompare }: { product: Product; compa
             >
               {comparing ? '✓ Added' : '+ Compare'}
             </button>
-            <button
-              onClick={() => addToCartWithToast(p.slug)}
-              disabled={out}
-              className="rounded-full bg-ink px-4 py-2 text-[11px] font-bold uppercase tracking-[0.1em] text-ivory transition hover:bg-oxblood disabled:opacity-30"
-              aria-label={out ? `${p.name} out of stock` : `Add ${p.name} to bag`}
+            <a
+              href={`/product/${p.slug}`}
+              className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-[11px] font-bold uppercase tracking-[0.1em] text-ivory transition hover:bg-oxblood active:scale-95"
+              aria-label={`View ${p.name} — photos, price and details`}
             >
-              <span className="hidden sm:inline">{out ? 'Sold out' : 'Add to bag'}</span>
-              <ShoppingBag size={14} className="sm:hidden" />
-            </button>
+              <span className="hidden sm:inline">View chair</span>
+              <ArrowRight size={14} className="sm:hidden" />
+              <ArrowRight size={13} className="hidden sm:inline" />
+            </a>
           </span>
         </div>
       </div>
