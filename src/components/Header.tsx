@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion, useScroll, useSpring } from 'motion/react';
-import { ArrowUpRight, Menu, MessageCircle, Search, ShoppingBag, X } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, Menu, MessageCircle, Search, ShoppingBag, X } from 'lucide-react';
 import { NAV_LINKS, CATEGORY_NAV, BRAND, WHATSAPP_NUMBER } from '../config/brand';
 import { LogoLockup } from './Logo';
 import { useCartCount } from '../lib/cart';
@@ -117,7 +117,9 @@ export default function Header() {
                   className="group relative flex items-center gap-1 py-2 text-[13px] font-medium uppercase tracking-[0.18em] text-ink/80 hover:text-ink"
                 >
                   Categories
-                  <motion.span animate={{ rotate: megaOpen ? 180 : 0 }} className="text-[10px]">▼</motion.span>
+                  <motion.span animate={{ rotate: megaOpen ? 180 : 0 }} className="flex" aria-hidden="true">
+                    <ChevronDown size={12} strokeWidth={2.5} />
+                  </motion.span>
                   <span
                     className={`absolute -bottom-0.5 left-0 h-px bg-oxblood transition-all duration-300 ${
                       megaOpen || categoriesActive ? 'w-full' : 'w-0 group-hover:w-full'
