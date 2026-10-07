@@ -8,7 +8,7 @@ export default function FeaturedProducts() {
   const [tab, setTab] = useState<CategorySlug | 'featured'>('featured');
   const cats = useMemo(getAllCategories, []);
   const products = useMemo(
-    () => (tab === 'featured' ? getFeaturedProducts(3) : getProductsByCategory(tab).slice(0, 3)),
+    () => (tab === 'featured' ? getFeaturedProducts(4) : getProductsByCategory(tab).slice(0, 4)),
     [tab],
   );
 
@@ -18,7 +18,7 @@ export default function FeaturedProducts() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-oxblood">
-              03 — Featured
+              02 — Featured
             </p>
             <h2 className="mt-4 max-w-xl font-display text-4xl md:text-6xl font-light leading-[1.0] text-balance">
               Loved seats, honest prices.
@@ -60,6 +60,7 @@ export default function FeaturedProducts() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.35, delay: i * 0.04 }}
+                className={i >= 3 ? 'lg:hidden' : undefined}
               >
                 <ProductCard product={p} index={i} />
               </motion.div>

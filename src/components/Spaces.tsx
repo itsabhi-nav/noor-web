@@ -57,22 +57,29 @@ export default function Spaces() {
     <section id="spaces" className="scroll-mt-10 bg-ink py-16 md:py-32 text-ivory" aria-label="Chairs in real environments">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-oxblood">
-          05 — In real rooms
+          04 — In real rooms
         </p>
         <div className="mt-4 flex flex-wrap items-end justify-between gap-6">
           <h2 className="max-w-2xl font-display text-4xl md:text-6xl font-light leading-[1.0]">
             One city, a hundred ways to sit.
           </h2>
-          <p className="max-w-xs text-[15px] leading-relaxed text-ivory/60">
-            Follow seating through the rooms of a working day — dawn desk to evening classroom.
-          </p>
+          <div className="max-w-xs">
+            <p className="text-[15px] leading-relaxed text-ivory/60">
+              Follow seating through the rooms of a working day — dawn desk to evening classroom.
+            </p>
+            <a
+              href="/shop"
+              className="mt-4 inline-flex items-center gap-2 rounded-full border border-ivory/30 px-6 py-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-ivory transition hover:border-ivory hover:bg-ivory/10"
+            >
+              Shop all chairs →
+            </a>
+          </div>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-6 md:gap-5">
           {SPACES.map((s, i) => (
-            <motion.a
+            <motion.figure
               key={s.title}
-              href={s.href}
               initial={reduce ? false : { opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
@@ -86,14 +93,11 @@ export default function Spaces() {
                 className="img-warm absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-[1.05]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-6">
+              <figcaption className="absolute inset-x-0 bottom-0 p-6">
                 <p className="font-display text-2xl md:text-3xl font-light">{s.title}</p>
                 <p className="mt-1 max-w-sm text-sm text-ivory/70">{s.caption}</p>
-                <span className="mt-3 inline-block border-b border-oxblood pb-0.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-ivory">
-                  Shop the look →
-                </span>
-              </div>
-            </motion.a>
+              </figcaption>
+            </motion.figure>
           ))}
         </div>
       </div>

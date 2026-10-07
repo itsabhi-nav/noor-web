@@ -14,7 +14,7 @@ const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello No
     />
     <div class="relative grid gap-8 p-8 md:p-16 lg:grid-cols-2">
       <div>
-        <p class="text-[11px] font-semibold uppercase tracking-mega text-ivory/60">06 — For business</p>
+        <p class="text-[11px] font-semibold uppercase tracking-mega text-ivory/60">05 — For business</p>
         <h2 class="mt-4 font-display text-4xl md:text-[3.4rem] font-light leading-[1.02]">
           Furnishing an office, school or studio?
         </h2>
@@ -38,6 +38,18 @@ const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello No
         </a>
         <p class="text-[13px] text-ivory/55">Replies during business hours · Delhi</p>
       </div>
+    </div>
+    <div class="relative flex flex-wrap gap-x-8 gap-y-3 border-t border-ivory/20 px-8 py-5 md:px-16">
+      {[
+        { t: 'No prepayment here', icon: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>' },
+        { t: 'Live stock confirmation', icon: '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>' },
+        { t: 'Delivery quoted upfront', icon: '<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>' },
+      ].map((f) => (
+        <span class="inline-flex items-center gap-2.5 text-[13px] font-medium text-ivory/80">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={f.icon} />
+          {f.t}
+        </span>
+      ))}
     </div>
   </div>
 </section>
