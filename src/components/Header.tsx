@@ -72,7 +72,7 @@ export default function Header() {
               rel="noopener"
               className="hidden shrink-0 items-center gap-1.5 text-ivory/80 hover:text-white sm:flex"
             >
-              <MessageCircle size={13} /> WhatsApp us
+              <MessageCircle size={13} /> Order on WhatsApp
             </a>
           </div>
         </div>

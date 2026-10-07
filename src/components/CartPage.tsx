@@ -149,8 +149,8 @@ export default function CartPage() {
 
         <h3 className="mt-7 font-display text-2xl font-light">Your details</h3>
         <p className="mt-1 text-[13px] text-smoke">
-          This demo does not save enquiries to any database. Your details go only into the
-          WhatsApp message <em>you</em> choose to send.
+          Nothing is saved on this site. Your details go only into the WhatsApp order
+          message <em>you</em> choose to send.
         </p>
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div className="sm:col-span-2">
@@ -188,12 +188,12 @@ export default function CartPage() {
             disabled={available.length === 0}
             className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-oxblood px-7 py-4 text-[12px] font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-oxblooddeep disabled:opacity-40"
           >
-            <MessageCircle size={15} /> Generate WhatsApp enquiry
+            <MessageCircle size={15} /> Continue to order
           </button>
         ) : (
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="mt-5 rounded-2xl bg-ink p-5 text-ivory">
             <p className="text-[14px] leading-relaxed text-ivory/80">
-              Your enquiry message is ready with {available.length} item{available.length > 1 ? 's' : ''} totalling{' '}
+              Your order is ready with {available.length} item{available.length > 1 ? 's' : ''} totalling{' '}
               <strong className="text-ivory">{inr(subtotal)}</strong>. Tap below to open WhatsApp
               and press send — nothing is sent until you do.
             </p>
@@ -203,7 +203,7 @@ export default function CartPage() {
               rel="noopener"
               className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 py-4 text-[12px] font-bold uppercase tracking-[0.16em] text-ink transition hover:brightness-110"
             >
-              <MessageCircle size={15} /> Open WhatsApp &amp; send
+              <MessageCircle size={15} /> Order on WhatsApp
             </a>
             <button onClick={() => setWaUrl(null)} className="mt-2 w-full text-center text-[13px] text-ivory/60 underline underline-offset-4">
               Edit details
@@ -211,7 +211,7 @@ export default function CartPage() {
           </motion.div>
         )}
         {available.length === 0 && (
-          <p className="mt-3 text-[13px] text-oxblood">All items in your bag are out of stock — add an available chair to enquire.</p>
+          <p className="mt-3 text-[13px] text-oxblood">All items in your bag are out of stock — add an available chair to order.</p>
         )}
       </div>
     </div>

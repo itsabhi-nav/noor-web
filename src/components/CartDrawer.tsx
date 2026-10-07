@@ -144,20 +144,20 @@ export default function CartDrawer() {
                 <p className="mt-1 text-[12px] text-smoke">
                   Delivery charges confirmed on WhatsApp before you pay anything.
                 </p>
-                <div className="mt-4 grid grid-cols-2 gap-2">
+                <div className="mt-4 space-y-2">
                   <a
                     href="/cart"
-                    className="rounded-full border border-ink px-4 py-3 text-center text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-ink hover:text-ivory transition"
+                    className="block rounded-full border border-ink px-4 py-3.5 text-center text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-ink hover:text-ivory transition"
                     onClick={() => setOpen(false)}
                   >
                     Review bag
                   </a>
                   <a
                     href="/cart#enquiry"
-                    className="rounded-full bg-oxblood px-4 py-3 text-center text-[12px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-oxblooddeep transition"
+                    className="block rounded-full bg-oxblood px-4 py-3.5 text-center text-[12px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-oxblooddeep transition"
                     onClick={() => setOpen(false)}
                   >
-                    Enquire →
+                    Order on WhatsApp
                   </a>
                 </div>
               </div>

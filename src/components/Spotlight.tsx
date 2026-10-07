@@ -103,7 +103,7 @@ export default function Spotlight() {
               href={wa}
               target="_blank"
               rel="noopener"
-              aria-label={`Ask about ${product.name} on WhatsApp`}
+              aria-label={`Order ${product.name} on WhatsApp`}
               className="inline-flex items-center justify-center rounded-full border border-line px-5 py-3.5 transition hover:border-ink"
             >
               <MessageCircle size={16} />

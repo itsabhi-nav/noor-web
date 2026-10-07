@@ -22,10 +22,12 @@ import { LogoLockup } from './Logo';
             Shop all chairs
           </a>
           <a
-            href="/contact"
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            target="_blank"
+            rel="noopener"
             class="inline-flex items-center gap-2 rounded-full border border-ivory/30 px-6 py-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-ivory transition hover:border-ivory hover:bg-ivory/10"
           >
-            WhatsApp enquiry
+            Order on WhatsApp
           </a>
         </div>
       </div>
@@ -42,7 +44,7 @@ import { LogoLockup } from './Logo';
         <p class="text-[11px] font-semibold uppercase tracking-mega text-ivory/40">Company</p>
         <ul class="mt-5 space-y-3 text-[15px]">
           <li><a class="transition hover:text-oxblood" href="/story">Our story</a></li>
-          <li><a class="transition hover:text-oxblood" href="/contact">Contact &amp; enquiries</a></li>
+          <li><a class="transition hover:text-oxblood" href="/contact">Contact</a></li>
           <li><a class="transition hover:text-oxblood" href="/cart">Your bag</a></li>
           <li><a class="transition hover:text-oxblood" href="/#spaces">Chairs in spaces</a></li>
         </ul>
@@ -51,10 +53,10 @@ import { LogoLockup } from './Logo';
         <p class="text-[11px] font-semibold uppercase tracking-mega text-ivory/40">Visit / Talk</p>
         <ul class="mt-5 space-y-3 text-[15px] text-ivory/80">
           <li>Delhi, India</li>
-          <li>Business hours shared on enquiry</li>
+          <li>Business hours shared on chat</li>
           <li>
-            <a class="underline decoration-oxblood decoration-2 underline-offset-4 transition hover:text-oxblood" href="/contact">
-              WhatsApp enquiry
+            <a class="underline decoration-oxblood decoration-2 underline-offset-4 transition hover:text-oxblood" href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener">
+              Order on WhatsApp
             </a>
           </li>
         </ul>

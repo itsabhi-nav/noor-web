@@ -26,8 +26,8 @@ export default function ContactForm() {
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl border border-line bg-parchment/50 p-8 text-center">
         <p className="font-display text-3xl font-light">WhatsApp opened.</p>
         <p className="mx-auto mt-3 max-w-sm text-[15px] text-smoke">
-          Your message was prepared in WhatsApp — press send there to reach us. Nothing was saved
-          to any database on this demo site.
+          Your order is ready in WhatsApp — just press send there. Nothing is saved
+          on this site.
         </p>
         <button onClick={() => setSent(false)} className="mt-6 rounded-full border border-ink px-6 py-3 text-[12px] font-semibold uppercase tracking-[0.16em] hover:bg-ink hover:text-ivory transition">
           Write another
@@ -38,8 +38,8 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={submit} className="rounded-2xl border border-line bg-parchment/50 p-6 md:p-8" noValidate>
-      <h2 className="font-display text-3xl font-light">Send an enquiry</h2>
-      <p className="mt-1 text-[13px] text-smoke">Opens WhatsApp with your message — you press send.</p>
+      <h2 className="font-display text-3xl font-light">Order on WhatsApp</h2>
+      <p className="mt-1 text-[13px] text-smoke">Fill this in — WhatsApp opens with your order ready. You press send.</p>
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
         <input value={form.name} onChange={set('name')} placeholder="Full name *" aria-label="Full name" className="rounded-xl border border-line bg-white/70 px-4 py-3.5 text-base outline-none focus:border-ink" />
         <input value={form.phone} onChange={set('phone')} placeholder="Phone (optional)" inputMode="tel" aria-label="Phone" className="rounded-xl border border-line bg-white/70 px-4 py-3.5 text-base outline-none focus:border-ink" />
@@ -54,7 +54,7 @@ export default function ContactForm() {
       </div>
       {error && <p className="mt-3 text-[14px] font-medium text-oxblood" role="alert">{error}</p>}
       <button type="submit" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-oxblood px-7 py-4 text-[12px] font-semibold uppercase tracking-[0.16em] text-white hover:bg-oxblooddeep transition">
-        <MessageCircle size={15} /> Continue on WhatsApp
+        <MessageCircle size={15} /> Order on WhatsApp
       </button>
     </form>
   );

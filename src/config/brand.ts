@@ -5,7 +5,7 @@ export const BRAND = {
   tagline: 'Thoughtful seating for the spaces where life and work happen.',
   city: 'Delhi, India',
   localeDetail: 'New Delhi — Studio & Seating Gallery',
-  whatsappLabel: 'Chat on WhatsApp',
+  whatsappLabel: 'Order on WhatsApp',
 } as const;
 
 /**

@@ -262,9 +262,9 @@ export default function ProductDetail({ product, related }: { product: Product; 
               href={wa}
               target="_blank"
               rel="noopener"
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-ink px-5 py-3.5 text-[12px] font-semibold uppercase tracking-[0.14em] transition hover:bg-ink hover:text-ivory"
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-ink px-5 py-3.5 text-[11px] font-semibold uppercase tracking-[0.12em] transition hover:bg-ink hover:text-ivory"
             >
-              <MessageCircle size={15} /> WhatsApp
+              <MessageCircle size={15} /> Order on WhatsApp
             </a>
           </div>
           <a
@@ -273,7 +273,7 @@ export default function ProductDetail({ product, related }: { product: Product; 
             rel="noopener"
             className="mt-3 hidden w-full items-center justify-center gap-2 rounded-full border border-ink px-7 py-3.5 text-[12px] font-semibold uppercase tracking-[0.16em] transition hover:bg-ink hover:text-ivory lg:inline-flex"
           >
-            <MessageCircle size={15} /> Ask on WhatsApp
+            <MessageCircle size={15} /> Order on WhatsApp
           </a>
 
           {/* accordions */}

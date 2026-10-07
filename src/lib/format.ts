@@ -36,7 +36,7 @@ export function buildWhatsAppUrl(
     )
     .join('\n');
   const msg = [
-    'Hello Noor Chair, I would like to enquire about the following chairs:',
+    'Hello Noor Chair, I would like to order the following chairs:',
     '',
     itemLines,
     '',
@@ -54,6 +54,6 @@ export function buildWhatsAppUrl(
 }
 
 export function productWhatsAppUrl(businessNumber: string, name: string, sku: string, price: number): string {
-  const msg = `Hello Noor Chair, I am interested in ${name} (${sku}) priced at ${inr(price)}. Please confirm stock and delivery charges.`;
+  const msg = `Hello Noor Chair, I would like to order ${name} (${sku}) priced at ${inr(price)}. Please confirm stock and delivery charges.`;
   return `https://wa.me/${businessNumber}?text=${encodeURIComponent(msg)}`;
 }

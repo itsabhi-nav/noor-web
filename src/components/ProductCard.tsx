@@ -55,20 +55,20 @@ export default function ProductCard({
             />
           )}
         </a>
-        <div className="pointer-events-none absolute left-3 top-3 flex gap-2">
+        <div className="pointer-events-none absolute left-2.5 top-2.5 flex flex-col items-start gap-1.5 sm:left-3 sm:top-3 sm:flex-row sm:items-center sm:gap-2">
           {product.featured && (
-            <span className="rounded-full bg-ivory/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] backdrop-blur">
+            <span className="rounded-full bg-ivory/90 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.12em] backdrop-blur sm:px-3 sm:text-[10px] sm:tracking-[0.14em]">
               Featured
             </span>
           )}
           {product.mrp && product.mrp > product.price && (
-            <span className="rounded-full bg-oxblood px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white">
+            <span className="rounded-full bg-oxblood px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.12em] text-white sm:px-3 sm:text-[10px] sm:tracking-[0.14em]">
               Save {inr(product.mrp - product.price)}
             </span>
           )}
         </div>
         <span
-          className={`absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] backdrop-blur transition-all duration-300 ${
+          className={`absolute bottom-2.5 left-2.5 flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.12em] backdrop-blur transition-all duration-300 sm:bottom-3 sm:left-3 sm:px-3 sm:py-1.5 sm:text-[10px] sm:tracking-[0.14em] ${
             out ? 'bg-ink/85 text-ivory' : 'bg-ivory/90 text-ink'
           }`}
         >
@@ -92,7 +92,7 @@ export default function ProductCard({
           !out && (
             <button
               onClick={doQuickAdd}
-              className="absolute bottom-2.5 right-2.5 flex h-10 w-10 items-center justify-center rounded-full bg-ivory/95 text-ink shadow-lg backdrop-blur transition hover:bg-oxblood hover:text-white active:scale-90 md:hidden"
+              className="absolute bottom-2 right-2 flex h-9 w-9 items-center justify-center rounded-full bg-ivory/95 text-ink shadow-lg backdrop-blur transition hover:bg-oxblood hover:text-white active:scale-90 sm:bottom-2.5 sm:right-2.5 sm:h-10 sm:w-10 md:hidden"
               aria-label={`Quick add ${product.name} to bag`}
             >
               <Plus size={18} />
@@ -101,7 +101,7 @@ export default function ProductCard({
         ) : (
           <a
             href={`/product/${product.slug}`}
-            className="absolute bottom-2.5 right-2.5 flex h-10 w-10 items-center justify-center rounded-full bg-ink/85 text-ivory shadow-lg backdrop-blur transition hover:bg-oxblood active:scale-90"
+            className="absolute bottom-2 right-2 flex h-9 w-9 items-center justify-center rounded-full bg-ink/85 text-ivory shadow-lg backdrop-blur transition hover:bg-oxblood active:scale-90 sm:bottom-2.5 sm:right-2.5 sm:h-10 sm:w-10"
             aria-label={`View ${product.name} — photos, price and details`}
           >
             <ArrowRight size={17} />

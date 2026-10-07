@@ -668,11 +668,12 @@ function CompareToggle({ slug, active, onToggle }: { slug: string; active: boole
       onClick={onToggle}
       aria-pressed={active}
       aria-label={active ? 'Remove from compare' : 'Add to compare'}
-      className={`absolute right-3 top-3 z-10 flex items-center gap-1.5 rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.12em] backdrop-blur transition-all active:scale-95 md:opacity-0 md:group-hover/cmp:opacity-100 md:focus:opacity-100 ${
+      className={`absolute right-2 top-2 z-10 flex h-9 w-9 items-center justify-center rounded-full backdrop-blur transition-all active:scale-95 sm:right-3 sm:top-3 sm:h-auto sm:w-auto sm:gap-1.5 sm:px-3 sm:py-2 sm:text-[10px] sm:font-bold sm:uppercase sm:tracking-[0.12em] md:opacity-0 md:group-hover/cmp:opacity-100 md:focus:opacity-100 ${
         active ? 'bg-oxblood text-white md:opacity-100' : 'bg-ivory/90 text-ink hover:bg-ivory'
       }`}
     >
-      <ArrowLeftRight size={12} /> {active ? 'Added' : 'Compare'}
+      <ArrowLeftRight size={14} className="sm:h-3 sm:w-3" />
+      <span className="hidden sm:inline">{active ? 'Added' : 'Compare'}</span>
     </button>
   );
 }
