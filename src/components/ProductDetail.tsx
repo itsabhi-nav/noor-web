@@ -166,7 +166,7 @@ export default function ProductDetail({ product, related }: { product: Product; 
             <nav className="text-[12px] uppercase tracking-[0.16em] text-smoke" aria-label="Breadcrumb">
               <a href="/" className="hover:text-ink">Home</a> /{' '}
               <a href="/shop" className="hover:text-ink">Shop</a> /{' '}
-              <a href={`/category/${product.category}`} className="hover:text-ink">
+              <a href={`/shop?cat=${product.category}`} className="hover:text-ink">
                 {product.category}
               </a>{' '}
               / <span className="text-ink">{product.sku}</span>
@@ -322,7 +322,7 @@ export default function ProductDetail({ product, related }: { product: Product; 
       <div className="mt-20 md:mt-28">
         <div className="flex items-end justify-between gap-4">
           <h2 className="font-display text-3xl font-light md:text-5xl">Pairs well with.</h2>
-          <a href={`/category/${product.category}`} className="hidden shrink-0 border-b-2 border-ink pb-0.5 text-[12px] font-semibold uppercase tracking-[0.16em] hover:border-oxblood hover:text-oxblood md:inline">
+          <a href={`/shop?cat=${product.category}`} className="hidden shrink-0 border-b-2 border-ink pb-0.5 text-[12px] font-semibold uppercase tracking-[0.16em] hover:border-oxblood hover:text-oxblood md:inline">
             More {product.category} →
           </a>
         </div>

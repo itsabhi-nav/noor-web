@@ -12,7 +12,7 @@ const SPACES = [
   {
     title: 'The contemporary office',
     caption: 'Mesh task seating that breathes through May afternoons.',
-    href: '/category/office',
+    href: '/shop?cat=office',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1400&auto=format&fit=crop',
     alt: 'Contemporary open office with rows of desks',
     tall: true,
@@ -20,7 +20,7 @@ const SPACES = [
   {
     title: 'The conference room',
     caption: 'Pushback chairs that keep long meetings humane.',
-    href: '/category/visitor',
+    href: '/shop?cat=visitor',
     image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1400&auto=format&fit=crop',
     alt: 'Bright meeting room with long table',
     tall: false,
@@ -28,7 +28,7 @@ const SPACES = [
   {
     title: 'The home workspace',
     caption: 'Compact ergo chairs that vanish under the desk at dinner.',
-    href: '/category/office',
+    href: '/shop?cat=office',
     image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1400&auto=format&fit=crop',
     alt: 'Home workspace with wooden desk and chair',
     tall: false,
@@ -36,7 +36,7 @@ const SPACES = [
   {
     title: 'The study corner',
     caption: 'Posture-first study chairs for tuition evenings.',
-    href: '/category/school',
+    href: '/shop?cat=school',
     image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1400&auto=format&fit=crop',
     alt: 'Classroom with desks arranged for study',
     tall: true,
@@ -44,7 +44,7 @@ const SPACES = [
   {
     title: 'The classroom',
     caption: 'Stackable shells that survive the school year.',
-    href: '/category/school',
+    href: '/shop?cat=school',
     image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=1400&auto=format&fit=crop',
     alt: 'Empty modern classroom in daylight',
     tall: false,

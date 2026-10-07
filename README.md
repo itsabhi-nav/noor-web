@@ -20,7 +20,7 @@ npm run preview
 - `src/lib/cart.ts` — cart store (stores `{slug, qty, color}` only; prices re-derived from catalogue; `noor:cart` events; `localStorage` key `noor-cart-v1`).
 - `src/lib/format.ts` — INR formatting + WhatsApp URL builders.
 - `src/components/*` — Header, SearchOverlay, CartDrawer, ProductCard, Hero, ScrollReveal, Spaces, ShopExplorer, ProductDetail, CartPage, ContactForm…
-- `src/pages/` — `index`, `shop`, `category/[category]`, `product/[slug]` (100 static paths + JSON-LD), `cart`, `story`, `contact`, `privacy`, `terms`, `404`.
+- `src/pages/` — `index`, `shop` (all collections; categories open as `/shop?cat=office` etc. — no separate category pages), `product/[slug]` (100 static paths + JSON-LD), `cart`, `story`, `contact`, `privacy`, `terms`, `404`. `public/_redirects` keeps old `/category/*` links working.
 
 ## Notes
 

@@ -25,10 +25,10 @@ export const NAV_LINKS = [
 ] as const;
 
 export const CATEGORY_NAV = [
-  { label: 'Office Chairs', href: '/category/office' },
-  { label: 'Visitor Chairs', href: '/category/visitor' },
-  { label: 'Gaming Chairs', href: '/category/gaming' },
-  { label: 'School Chairs', href: '/category/school' },
-  { label: 'Plastic Chairs', href: '/category/plastic' },
-  { label: 'Other Seating', href: '/category/other' },
+  { label: 'Office Chairs', href: '/shop?cat=office' },
+  { label: 'Visitor Chairs', href: '/shop?cat=visitor' },
+  { label: 'Gaming Chairs', href: '/shop?cat=gaming' },
+  { label: 'School Chairs', href: '/shop?cat=school' },
+  { label: 'Plastic Chairs', href: '/shop?cat=plastic' },
+  { label: 'Other Seating', href: '/shop?cat=other' },
 ] as const;

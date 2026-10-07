@@ -43,7 +43,7 @@ const layout = [
   <div class="mt-10 grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-5">
     {withCounts.map((c, i) => (
       <a
-        href={`/category/${c.slug}`}
+        href={`/shop?cat=${c.slug}`}
         class={`group relative overflow-hidden rounded-2xl bg-parchment ${layout[i % layout.length]}`}
       >
         <img

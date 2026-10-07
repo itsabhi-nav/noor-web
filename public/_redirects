@@ -1,0 +1,2 @@
+# Legacy category pages now live as filtered shop views (keeps old links + SEO working)
+/category/* /shop?cat=:splat 301

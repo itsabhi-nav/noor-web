@@ -139,7 +139,7 @@ export default function Header() {
                         {cats.map((c) => (
                           <a
                             key={c.slug}
-                            href={`/category/${c.slug}`}
+                            href={`/shop?cat=${c.slug}`}
                             className="group flex items-center gap-3 rounded-xl p-2 transition hover:bg-ink/[0.04]"
                           >
                             <img

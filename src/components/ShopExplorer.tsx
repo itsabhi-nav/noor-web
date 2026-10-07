@@ -158,6 +158,7 @@ export default function ShopExplorer({
 
   const shown = results.slice(0, visible);
   const touch = () => setVisible(PAGE_SIZE);
+  const activeCat = category === 'all' ? undefined : cats.find((c) => c.slug === category);
 
   const toggleAvail = (a: Availability) => {
     setAvail((prev) => {
@@ -341,6 +342,25 @@ export default function ShopExplorer({
       </aside>
 
       <div className="min-w-0">
+        {activeCat && (
+          <div className="mb-5 flex items-center gap-4 rounded-2xl border border-line bg-parchment/60 p-4 md:p-5">
+            <img
+              src={activeCat.image}
+              alt={`${activeCat.name} — illustrative concept`}
+              loading="lazy"
+              className="h-16 w-16 shrink-0 rounded-xl object-cover sm:h-20 sm:w-20"
+            />
+            <div className="min-w-0">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-oxblood">
+                {activeCat.tagline}
+              </p>
+              <p className="mt-0.5 font-display text-2xl font-light md:text-3xl">{activeCat.name}</p>
+              <p className="mt-1 line-clamp-2 text-[13px] leading-relaxed text-smoke">
+                {activeCat.description}
+              </p>
+            </div>
+          </div>
+        )}
         {/* sticky toolbar */}
         <div className="sticky top-[66px] z-30 -mx-5 bg-ivory/90 px-5 py-3 backdrop-blur-md md:top-[74px] md:-mx-10 md:px-10">
           <div className="flex items-center gap-2">
