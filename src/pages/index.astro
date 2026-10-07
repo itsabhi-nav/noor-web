@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero';
 import Marquee from '../components/Marquee.astro';
+import ChairZoom from '../components/ChairZoom';
 import ScrollReveal from '../components/ScrollReveal';
 import Collections from '../components/Collections.astro';
 import FeaturedProducts from '../components/FeaturedProducts';
@@ -20,6 +21,7 @@ import Closing from '../components/Closing.astro';
 >
   <Hero client:load />
   <Marquee />
+  <ChairZoom client:load />
   <ScrollReveal client:load />
   <Collections />
   <FeaturedProducts client:visible />
